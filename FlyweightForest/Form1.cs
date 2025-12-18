@@ -6,6 +6,7 @@ namespace FlyweightForest
         private readonly TreeFactory factory = new();
         private readonly Random random = new();
         private readonly System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+        private ITreeDecorator currentDecorator;
 
         private bool running;
         public Form1()
@@ -17,6 +18,15 @@ namespace FlyweightForest
             nudCount.Minimum = 1;
             nudCount.Maximum = 1000;
             nudCount.Value = 50;
+
+            cbDecor.Items.AddRange(new[]
+{
+                "Без декоратора",
+                "Сніг",
+                "Плоди",
+                "Гірлянда"
+            });
+            cbDecor.SelectedIndex = 0;
 
             timer.Interval = 120;
             timer.Tick += Timer_Tick;
@@ -58,8 +68,20 @@ namespace FlyweightForest
             {
                 int x = random.Next(20, panelForest.Width - 20);
                 int y = random.Next(panelForest.Height / 2, panelForest.Height - 20);
+
                 forest.Add(new Tree(x, y, type));
             }
+
+            string decor = cbDecor.SelectedItem.ToString();
+
+            currentDecorator = null;
+
+            if (decor == "Плоди")
+                currentDecorator = new FruitDecorator();
+            else if (decor == "Сніг")
+                currentDecorator = new SnowDecorator();
+            else if (decor == "Гірлянда")
+                currentDecorator = new GarlandDecorator();
 
             panelForest.Invalidate();
         }
@@ -79,6 +101,12 @@ namespace FlyweightForest
         private void panelForest_Paint(object sender, PaintEventArgs e)
         {
             forest.Draw(e.Graphics);
+
+            if (currentDecorator != null)
+            {
+                foreach (var tree in forest.Trees)
+                    currentDecorator.Draw(e.Graphics, tree);
+            }
         }
     }
 }

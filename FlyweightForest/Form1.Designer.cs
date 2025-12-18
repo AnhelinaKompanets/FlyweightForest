@@ -38,6 +38,8 @@
             btnClear = new Button();
             panelForest = new Panel();
             btnAdd = new Button();
+            cbDecor = new ComboBox();
+            lblDecor = new Label();
             ((System.ComponentModel.ISupportInitialize)nudCount).BeginInit();
             SuspendLayout();
             // 
@@ -122,16 +124,17 @@
             // 
             // panelForest
             // 
+            panelForest.BackColor = Color.FromArgb(192, 192, 255);
             panelForest.Location = new Point(193, 0);
             panelForest.Name = "panelForest";
-            panelForest.Size = new Size(595, 452);
+            panelForest.Size = new Size(595, 541);
             panelForest.TabIndex = 8;
             panelForest.Paint += panelForest_Paint;
             // 
             // btnAdd
             // 
             btnAdd.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            btnAdd.Location = new Point(13, 400);
+            btnAdd.Location = new Point(12, 500);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(151, 29);
             btnAdd.TabIndex = 9;
@@ -139,11 +142,32 @@
             btnAdd.UseVisualStyleBackColor = true;
             btnAdd.Click += btnAdd_Click;
             // 
+            // cbDecor
+            // 
+            cbDecor.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            cbDecor.FormattingEnabled = true;
+            cbDecor.Location = new Point(13, 424);
+            cbDecor.Name = "cbDecor";
+            cbDecor.Size = new Size(151, 27);
+            cbDecor.TabIndex = 10;
+            // 
+            // lblDecor
+            // 
+            lblDecor.AutoSize = true;
+            lblDecor.Font = new Font("Times New Roman", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 204);
+            lblDecor.Location = new Point(12, 401);
+            lblDecor.Name = "lblDecor";
+            lblDecor.Size = new Size(132, 19);
+            lblDecor.TabIndex = 11;
+            lblDecor.Text = "Категорія декору";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 541);
+            Controls.Add(lblDecor);
+            Controls.Add(cbDecor);
             Controls.Add(btnAdd);
             Controls.Add(panelForest);
             Controls.Add(btnClear);
@@ -174,5 +198,7 @@
         private Button btnClear;
         private Panel panelForest;
         private Button btnAdd;
+        private ComboBox cbDecor;
+        private Label lblDecor;
     }
 }
